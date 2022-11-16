@@ -38,3 +38,13 @@ def get_damage_type_count(data_set: list) -> dict:
             damage_type_count[row["damage"]["type"]] = 1
     return damage_type_count
 
+
+def count_types_in_list(data_set: list) -> dict:
+    """Returns the number of each type in a list"""
+    type_count = {}
+    for element in data_set:
+        if element in type_count:
+            type_count[element] += 1
+        else:
+            type_count[element] = 1
+    return type_count
