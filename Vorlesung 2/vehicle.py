@@ -53,12 +53,19 @@ class Vehicle:
 
 class Garage:
     def __init__(self, capacity_in: int, alarm_in: bool, location_in: str, fleet_in: list[Vehicle]):
+        if capacity_in < len(fleet_in):
+            # add vehicles until the capacity is reached
+            self.capacity = capacity_in
+            self.fleet = fleet_in[:capacity_in]
+            print(f"The fleet is larger than the capacity of the garage. The fleet is reduced to the capacity of {self.capacity}")
+            print("The vehicles that are not in the garage are:")
+            for vehicle in fleet_in[capacity_in:]:
+                vehicle.display_vehicle_characteristics()
+        else:
+            self.fleet = fleet_in
         self.capacity = capacity_in
         self.alarm = alarm_in
         self.location = location_in
-        self.fleet = fleet_in
-        if self.capacity < len(self.fleet):
-            raise ValueError("Capacity is less than the number of vehicles in the fleet")
 
     def display_garage_characteristics(self):
         print("-----------------")
@@ -81,6 +88,6 @@ mercedes_benz = Vehicle("black", "Mercedes Benz", "4-Cylinder", 250, 5, "Diesel"
 ford = Vehicle("red", "Ford", "6-Cylinder", 200, 5, "Gasoline", 8.5)
 honda = Vehicle("blue", "Honda", "8-Cylinder", 300, 5, "Gasoline", 10.5)
 
-garage = Garage(3, True, "Berlin", [mercedes_benz, ford, honda])
+garage = Garage(2, True, "Berlin", [mercedes_benz, ford, honda])
 garage.display_garage_characteristics()
 garage.display_fleet_characteristics()
