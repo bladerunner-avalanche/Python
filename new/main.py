@@ -5,4 +5,3 @@
 import functions as f
 
 f.simple_calculator()
-
