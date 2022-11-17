@@ -22,8 +22,12 @@ bf.print_section_head("TYPE COUNT GENERAL FUNCTION")
 print("Number of each vehicle type:", f.count_types_in_list([row["vehicle_type"] for row in data]))
 print("Number of each damage type:", f.count_types_in_list([row["damage"]["type"] for row in data]))
 
+bf.print_section_head("AVG COST PER DAMAGE TYPE")
+avg_cost = f.get_avg_cost_per_damage_type(data)
+for element in avg_cost:
+    print("Average cost of", element, "repairs:", avg_cost[element])
 
+bf.print_section_head("MOST FREQUENT DAMAGE TYPE")
+print(f.get_most_freq_damage_type(data))
 
-
-
-
+#print(f.get_most_freq_damage_cost(data))
