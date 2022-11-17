@@ -20,7 +20,6 @@ class Vehicle:
         print("Number of Seats: ", self.number_of_seats)
         print("Fuel Type: ", self.fuel_type)
         print("Fuel Consumption: ", self.fuel_consumption)
-        return None
 
     """Getter and setter methods for the attributes"""
     def update_color(self, color_in):
@@ -58,6 +57,8 @@ class Garage:
         self.alarm = alarm_in
         self.location = location_in
         self.fleet = fleet_in
+        if self.capacity < len(self.fleet):
+            raise ValueError("Capacity is less than the number of vehicles in the fleet")
 
     def display_garage_characteristics(self):
         print("-----------------")
@@ -68,7 +69,6 @@ class Garage:
         print("Location: ", self.location)
         print("Fleet: ", self.fleet)
         return None
-
 
     def display_fleet_characteristics(self):
         print(f"Displaying vehicles in the fleet of {self.location} garage")
